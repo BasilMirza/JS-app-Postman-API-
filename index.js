@@ -44,9 +44,9 @@ function getTasks() {
       tableBody.innerHTML = "";
       for (let i = 0; i < res.length; i++) {
         tableBody.innerHTML += `<tr id="task${i}"><td>${res[i].id}</td>
-    <td>${res[i].name}</td> 
-    <td>${res[i].expiryDate}</td>
-    <td>${res[i].status}</td>
+    <td id="taskname${res[i].id}">${res[i].name}</td> 
+    <td id="taskdate${res[i].id}">${res[i].expiryDate}</td>
+    <td id="taskstatus${res[i].id}">${res[i].status}</td>
     <td><button data-target="#editbutton"
     data-toggle="modal"
     class="btn btn-secondary" onclick="editFunc(${res[i].id})">EDIT</button>
@@ -65,6 +65,12 @@ getTasks();
 var taskId = "";
 
 function editFunc(id) {
+  let name = document.getElementById(`taskname${id}`);
+  let date = document.getElementById(`taskdate${id}`);
+  let status = document.getElementById(`taskstatus${id}`);
+  document.getElementById("updateTitle").value = name.textContent;
+  document.getElementById("updateDate").value = date.textContent;
+  document.getElementById("updateStatus").value = status.textContent;
   taskId = id;
 
   console.log(id);
